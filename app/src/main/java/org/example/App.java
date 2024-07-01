@@ -3,12 +3,43 @@
  */
 package org.example;
 
+import java.util.stream.IntStream;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
+
+        // メッセージを出力
         System.out.println(new App().getGreeting());
+
+        // 入力データを用意
+        int[] input1 = new int[]{2, 3};
+        int[] input2 = IntStream.rangeClosed(1, 10).toArray();
+        int[] input3 = IntStream.rangeClosed(1, 10)
+                .filter(n -> n % 2 != 0)
+                .toArray();
+        int[] input4 = IntStream.rangeClosed(1, 10)
+                .filter(n -> n % 2 == 0)
+                .toArray();
+
+        // case1
+        Calculate case1 = new Calculate(input1);
+        System.out.printf("Sum of 2 and 3 is %d. Average is %.1f.%n", case1.sum(), case1.ave());
+
+        // case2
+        Calculate case2 = new Calculate(input2);
+        System.out.printf("Sum of 1 to 10 is %d. Average is %.1f.%n", case2.sum(), case2.ave());
+
+        // case3
+        Calculate case3 = new Calculate(input3);
+        System.out.printf("Sum odd of 1 to 10 is %d. ", case3.sum());
+
+        // case4
+        Calculate case4 = new Calculate(input4);
+        System.out.printf("Sum of even is %d.", case4.sum());
     }
+
 }
